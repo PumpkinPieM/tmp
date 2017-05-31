@@ -6,7 +6,6 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Set;
-
 class Record{
 		public int frames;
 		public int bytes;
@@ -17,16 +16,11 @@ class Record{
 }
 public class Assignment2 {
 
+
 /*====================================TODO===================================*/
 	/* Put your required state variables here */
 	static byte[] mymac;
-	static HashMap records;
-	static int frameToMe;
-	static int frameMulti;
-	static int num_ipv4;
-	static int num_ipv6;
-	static int frameCounter;
-
+	
 /*===========================================================================*/
 
 	public static void run(GRNVS_RAW sock, int frames) {
@@ -38,6 +32,13 @@ public class Assignment2 {
 	/* If you want to set up any data/counters before the receive loop,
 	 * this is the right location
 	 */
+	  HashMap records;
+	  int frameToMe=0;
+	  int frameMulti=0;
+	  int num_ipv4=0;
+	  int num_ipv6=0;
+	  int frameCounter=0;
+
 		mymac = sock.getMac();
 		records = new HashMap();
 		frameCounter = 0;
@@ -119,7 +120,7 @@ public class Assignment2 {
 		}
 		System.out.printf("%d of them were for me\n",frameToMe);
 		System.out.printf("%d of them were multicast\n",frameMulti);
-		System.out.printf("IPv4 accounted for %.1f%% and IPv6 for %.1f%% of traffic", (float)num_ipv4/(float)frameCounter, (float)num_ipv6/(float)frameCounter);
+		System.out.printf("IPv4 accounted for %.1f%% and IPv6 for %.1f%% of traffic", (float)num_ipv4*100/(float)frameCounter, (float)num_ipv6*100/(float)frameCounter);
 
 /*===========================================================================*/
 	}
